@@ -1,6 +1,5 @@
-package com.sixessense.admin.report.command.domain.aggregate.entity;
+package com.sixessense.admin.report.query.domain.aggregate.entity;
 
-import com.sixessense.admin.report.command.application.dto.request.CreateReportRequest;
 import com.sixessense.admin.report.command.domain.aggregate.entity.enumtype.ReportType;
 import com.sixessense.admin.report.command.domain.aggregate.vo.ReporterVO;
 import com.sixessense.admin.report.command.domain.aggregate.vo.ReviewInfoVO;
@@ -14,8 +13,8 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "Report_TB")
-public class Report {
+@Table(name = "Report")
+public class QueryReport {
 
     @Id
     @Column(name = "report_no")
@@ -40,16 +39,4 @@ public class Report {
 
     @Embedded
     private ReporterVO reporterVo;
-
-
-    public static Report toEntity(CreateReportRequest createReportRequest) {
-        return Report.builder()
-                .reportType(createReportRequest.getReportType())
-                .reportContent(createReportRequest.getReportContent())
-                .reviewInfoVO(new ReviewInfoVO(createReportRequest.getReviewNo()))
-                .build();
-    }
-
-
-
 }
